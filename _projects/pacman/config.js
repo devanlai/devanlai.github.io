@@ -29,7 +29,7 @@ function Rules() {
 }
 
 //Default CS188-style config
-var config = new Config(30, 10, true);
+var config = new Config(22, 10, true);
 var rules = new Rules();
 
 var PACMAN = "Pacman";
