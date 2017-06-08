@@ -25,8 +25,11 @@ title: Devan's website
 navbar-links:
   About Me: "aboutme"
   Projects:
-    - dap42: "https://github.com/devanlai/dap42"
-    - webdfu: "https://github.com/devanlai/webdfu"
+    link: "/projects/"
+    children:
+      - dap42: "https://github.com/devanlai/dap42"
+      - webdfu: "https://github.com/devanlai/webdfu"
+    show_projects: true
   GitHub: "https://github.com/devanlai"
 
 # Image to show in the navigation bar - image must be a square (width = height)
@@ -94,6 +97,16 @@ excerpt_length: 50
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
 title-separator: "-"
+
+collections:
+  projects:
+    output: true
+    defaults:
+      - scope:
+          path: ""
+          type: project
+        values:
+          layout: page
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 

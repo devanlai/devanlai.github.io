@@ -17,7 +17,23 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav navbar-right">
       {% for link in site.navbar-links %}
-        {% if link[1].first %}
+        {% if link[1].link and link[1].children.first %}
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="{{ link[1].link }}">{{ link[0] }}</a>
+            <div class="navlinks-children">
+              {% for childlink in link[1].children %}
+                {% for linkparts in childlink %}
+                  {% include navbarlink.html link=linkparts %}
+                {% endfor %}
+              {% endfor %}
+              {% if link[1].show_projects %}
+                {% for project in site.projects %}
+                  <a href="{{ project.url | prepend: site.baseurl }}">{{ project.shorttitle }}</a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </li>
+        {% elsif link[1].first %}
           <li class="navlinks-container">
             <a class="navlinks-parent" href="javascript:void(0)">{{ link[0] }}</a>
             <div class="navlinks-children">

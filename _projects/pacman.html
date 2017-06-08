@@ -1,0 +1,50 @@
+---
+title: CS188 Contest Replay Viewer
+subtitle: A canvas-based viewer for pacman CTF replays
+shorttitle: CS188 Replay Viewer
+js:
+  - "exceptions.js"
+  - "pickle.js"
+  - "config.js"
+  - "pacman_graphics.js"
+  - "play_replay.js"
+  - "demo.js"
+excerpt: >
+  In fall 2010, I wrote an HTML canvas-based viewer for CS188 contest
+  replays so that I could watch and share matches without downloading
+  them individually.
+---
+<p>
+  In fall 2010, I took
+  <a href="https://inst.eecs.berkeley.edu/~cs188/fa10/information.html">CS188</a>,
+  Berkeley's introductory AI class.
+  One of the more fun projects was a class-wide
+  <a href="https://inst.eecs.berkeley.edu/~cs188/fa10/projects/contest/contest.html">contest</a>
+  where we wrote AI for a Pacman-themed 2v2 capture-the-flag tournament.
+  Each team's bots played against each other in a nightly round-robin showdown,
+  playing to the best out of 9 rounds.
+  With so many matches being played every night, it was tedious to download
+  each replay and feed it into the standard Python replay viewer.
+</p>
+<p>
+  To satisfy my need for bot-vs-bot action, I wrote a simple server that
+  retrieved the replay files (stored as Python
+  <a href="https://docs.python.org/2/library/pickle.html"><code>pickle</code></a>
+  files) and translated the replays into JSON.
+  The server would also retrieve the offical replay index page and render a
+  new version with the links pointing to the viewer instead.
+  I could then click on any replay and view it in the browser, where javascript
+  would read the replay history and render it into a <code>&ltcanvas&gt</code> element,
+  frame by frame.
+</p>
+<p>
+  I eventually wrote my own <code>pickle</code> implementation in javascript
+  to make a fully self-contained demo page just like the version embedded here.
+  This version was integrated into the official contest from spring 2011 onwards.
+</p>
+<h3 id="header"></h3>
+<canvas id="canvas" width="100%" height="300"></canvas>
+<div class="status_bar" id="status_bar"></div>
+<button id="run_button" type="button" disabled="disabled" onclick="toggle_run(this);">Run</button>
+<button id="step_button" type="button" disabled="disabled" onclick="toggle_step(this);">Step</button>
+<button id="reset_button" type="button" disabled="disabled" onclick="toggle_reset(this);">Reset</button>
