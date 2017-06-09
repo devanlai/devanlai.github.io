@@ -26,9 +26,6 @@ navbar-links:
   About Me: "aboutme"
   Projects:
     link: "/projects/"
-    children:
-      - dap42: "https://github.com/devanlai/dap42"
-      - webdfu: "https://github.com/devanlai/webdfu"
     show_projects: true
   GitHub: "https://github.com/devanlai"
 
