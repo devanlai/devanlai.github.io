@@ -21,7 +21,7 @@ excerpt: >
   One of the more fun projects was a class-wide
   <a href="https://inst.eecs.berkeley.edu/~cs188/fa10/projects/contest/contest.html">contest</a>
   where we wrote AI for a Pacman-themed 2v2 capture-the-flag tournament.
-  Each team's bots played against each other in a nightly round-robin showdown,
+  Each team's bots played against each other in a nightly round-robin tournament,
   playing to the best out of 9 rounds.
   With so many matches being played every night, it was tedious to download
   each replay and feed it into the standard Python replay viewer.
@@ -29,7 +29,7 @@ excerpt: >
 <p>
   To satisfy my need for bot-vs-bot action, I wrote a simple server that
   retrieved the replay files (stored as Python
-  <a href="https://docs.python.org/2/library/pickle.html"><code>pickle</code></a>
+  <a href="https://docs.python.org/2/library/pickle.html">pickle</a>
   files) and translated the replays into JSON.
   The server would also retrieve the offical replay index page and render a
   new version with the links pointing to the viewer instead.
@@ -39,8 +39,8 @@ excerpt: >
 </p>
 <p>
   I eventually wrote my own <code>pickle</code> implementation in javascript
-  to make a fully self-contained demo page just like the version embedded here.
-  This version was integrated into the official contest from spring 2011 onwards.
+  to make a fully standalone viewer, like the demo embedded below.
+  The standalone viewer was eventually integrated into the official contest from spring 2011 onwards.
 </p>
 <h3 id="header"></h3>
 <canvas id="canvas" width="100%" height="300"></canvas>
