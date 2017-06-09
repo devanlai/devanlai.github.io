@@ -2,8 +2,7 @@
 title: WebDFU
 subtitle: Device firmware updates in the browser using WebUSB
 excerpt: >
-  A demo investigating the potential non-malicious uses for allowing websites to
-  reprogram USB-attached devices without installing any native plugins.
+  A demo using web pages to reprogram USB-attached devices without installing any native plugins.
 ---
 ## Overview
 WebDFU is a proof-of-concept using [WebUSB](https://wicg.github.io/webusb/) to reprogram [USB DFU](http://wiki.openmoko.org/wiki/USB_DFU_-_The_USB_Device_Firmware_Upgrade_standard) class devices from the browser. It supports USB DFU 1.1 and [DfuSe 1.1a](http://www.st.com/en/development-tools/stsw-stm32080.html) bootloaders and mbed boards with [custom interface firmware](https://github.com/devanlai/DAPLink).
