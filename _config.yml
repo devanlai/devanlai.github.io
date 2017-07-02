@@ -14,10 +14,10 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: Devan's website
+title: devanecdotes
 
 # Short description of your site
-#description: A virtual proof that name is awesome!
+description: Devan's adventures in embedded software
 
 # --- Navigation bar options --- #
 
@@ -93,7 +93,7 @@ excerpt_length: 50
 
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
-title-separator: "-"
+title-separator: "|"
 
 collections:
   projects:
