@@ -7,10 +7,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      {% if page.collection %}
+        {% assign collection = site.collections | where:'label',page.collection | first %}
+      {% endif %}
+      {% if page.nav-name %}
+        {% assign nav_name = page.nav-name %}
+        {% assign nav_url = page.nav-url %}
+      {% elsif collection %}
+        {% assign nav_name = collection.label %}
+        {% capture nav_url %}/{{ collection.label }}/{% endcapture %}
+      {% endif %}
       {% if site.title-img %}
         <a class="navbar-brand navbar-brand-logo" href="{{ site.url }}"><img src="{{ site.title-img }}"/></a>
       {% else %}
-        <a class="navbar-brand" href="{{ site.url }}">{{ site.title }}</a>
+        <div class="navbar-brand">{{ site.nav-separator }}&nbsp;<a href="{{ site.url }}">dev</a>{% if nav_name %}&nbsp;{{ site.nav-separator }}&nbsp;<a href="{{ nav_url }}">{{ nav_name }}</a>{% endif %}</div>
       {% endif %}
     </div>
 

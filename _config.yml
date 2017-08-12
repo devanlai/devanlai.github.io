@@ -95,6 +95,8 @@ excerpt_length: 50
 # and RSS feed title
 title-separator: "|"
 
+nav-separator: "/"
+
 collections:
   projects:
     output: true

@@ -109,13 +109,14 @@ img {
 }
 
 .navbar-custom .navbar-brand,
+.navbar-custom .navbar-brand a,
 .navbar-custom .nav li a {
   font-weight: 800;
   color: #404040;
 }
 
-.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus ,
+.navbar-custom .navbar-brand a:focus,
+.navbar-custom .navbar-brand a:hover,
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
   color: #0085a1;
