@@ -24,6 +24,7 @@ description: Devan's adventures in embedded software
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
+  Blog: "log/"
   Projects:
     link: "/projects/"
     show_projects: true
@@ -113,7 +114,7 @@ collections:
 timezone: "America/Vancouver"
 markdown: kramdown
 highlighter: rouge
-permalink: /:year-:month-:day-:title/
+permalink: /log/:year-:month-:day-:title/
 paginate: 5
 
 kramdown:
@@ -127,6 +128,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      nav-name: "log"
+      nav-url: "/log/"
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
   -

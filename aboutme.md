@@ -1,6 +1,8 @@
 ---
 layout: page
 title: About me
+nav-name: an
+nav-url: ""
 ---
 
 I'm a firmware/embedded software engineer working in the Bay Area. By day, I work on big box RF signal generators. At night, I hack on USB, debuggers, and all things related to microcontrollers.
