@@ -1,6 +1,8 @@
 ---
 title: dap42
 subtitle: An open-source CMSIS-DAP debug probe
+bigimg: /img/DAP42-big.jpg
+preview_image: /img/DAP42-preview.jpg
 excerpt: >
   I needed a debugger, so I decided to make one myself.
 
