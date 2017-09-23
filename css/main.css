@@ -353,16 +353,21 @@ footer .theme-by {
   height: 192px;
   width: 192px;
   margin-top: -35px;
-  filter: grayscale(90%);
-}
-.post-image:hover {
-  filter: grayscale(0%);
 }
 .post-image img {
   border-radius: 100px;
   height: 192px;
   width: 192px;
 }
+
+.post-image-wide {
+  border-radius: 50px;
+  max-height: 192px;
+}
+.post-image-wide img {
+  max-height: 192px;
+}
+
 .post-preview .post-read-more {
   font-weight: 800;
 }
