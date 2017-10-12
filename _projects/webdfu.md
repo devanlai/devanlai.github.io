@@ -1,8 +1,10 @@
 ---
 title: WebDFU
 subtitle: Device firmware updates in the browser using WebUSB
+preview_image: /img/WebDFU-preview.png
+wide_preview: true
 excerpt: >
-  A demo using web pages to reprogram USB-attached devices without installing any native plugins.
+  A demo using the browser to reprogram USB-attached devices via WebUSB - no native plugins required.
 ---
 ## Overview
 WebDFU is a proof-of-concept using [WebUSB](https://wicg.github.io/webusb/) to reprogram [USB DFU](http://wiki.openmoko.org/wiki/USB_DFU_-_The_USB_Device_Firmware_Upgrade_standard) class devices from the browser. It supports USB DFU 1.1 and [DfuSe 1.1a](http://www.st.com/en/development-tools/stsw-stm32080.html) bootloaders and mbed boards with [custom interface firmware](https://github.com/devanlai/DAPLink).
@@ -21,6 +23,8 @@ The simplest application for WebUSB and firmware updates is to implement [dfu-ut
 
 I've put together an [online demo](https://devanlai.github.io/webdfu/dfu-util/) that offers similar functionality to dfu-util. It supports basic DFU 1.1 functionality like switching to the bootloader over USB, downloading new firmware, and reading out the device firmware. It also has preliminary support for [STMicro's DfuSe 1.1a](http://dfu-util.sourceforge.net/dfuse.html) extensions, which I've tested successfully with the on-chip USB bootloader on STM32F042xx chips.
 
+![webdfu example screenshot](/img/WebDFU.png)
+*A screenshot of the webdfu demo in action*
 
 In the future, this could be used to build a rich firmware updater that guides the user through the process of putting their device into firmware-upgrade mode and selecting the correct firmware image.
 
@@ -41,7 +45,7 @@ Regardless of the name, all of the interface chips allow the user to flash the t
 4. Troubleshoot the new code with external tools and software
 5. Return to step 1
 
-The software involved to make all of this work out-of-the-box across multiple pldatforms is quite clever, but it has some limitations:
+The software involved to make all of this work out-of-the-box across multiple platforms is quite clever, but it has some limitations:
 
 * The user must manually copy the firmware onto the board every time.
 * Mass storage device emulation is a moving target - it's difficult to future-proof against OS driver and filesystem changes.
@@ -51,7 +55,7 @@ With WebUSB, we could potentially resolve all of those issues:
 
 * The browser can talk directly to the interface chip via WebUSB, eliminating the manual drag'n'drop step.
 * Since WebUSB doesn't depend on OS-level application drivers, it's no longer necessary to tunnel everything through the lowest-common-denominator of drivers to build something that works out-of-the-box everywhere.
-* With a custom USB protocol, the browser can access the full capabilities of the interface chip, which include on-chip debugging and bidirectional serial communication with the target chip.
+* With a custom USB protocol, the browser can access the full capabilities of the interface chip, which include [on-chip debugging](/projects/webstlink) and bidirectional serial communication with the target chip.
 
 
 Alas, as I am only one man and the mbed IDE itself is closed source, I don't have the time and resources to build a fully enabled online IDE that interfaces directly with the hardware. What I do have is a [proof-of-concept](https://devanlai.github.io/webdfu/mbed-download/) that cuts out the pesky drag'n'drop step, allowing a direct download from the browser to the target microcontroller without leaving the browser.
@@ -68,5 +72,6 @@ Luckily, while the mbed IDE isn't open-source, we can still leverage their onlin
 * WebUSB demo code: [webdfu](https://github.com/devanlai/webdfu)
 * DAPLink with DFU and WebUSB: [daplink](https://github.com/devanlai/DAPLink)
 
-## Other Resources
-Check out the [dapjs](https://github.com/ARMmbed/dapjs-web-demo) project for similar ideas by someone else.
+## See also:
+* Controlling unmodified STLink debuggers with WebUSB: [webstlink](/projects/webstlink)
+* Check out the [dapjs](https://github.com/ARMmbed/dapjs-web-demo) project for similar ideas by someone else.
