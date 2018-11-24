@@ -5,7 +5,7 @@ nav-name: an
 nav-url: ""
 ---
 
-I'm a firmware/embedded software engineer working in the Bay Area. By day, I work on big box RF signal generators. At night, I hack on USB, debuggers, and all things related to microcontrollers.
+I'm a firmware/embedded software engineer working in the Bay Area. By day, I work on weather stations. By night, I tinker with debuggers.
 
 ## My history
 
@@ -21,6 +21,9 @@ I ended up spending most of my time at CalSol, where I:
 * Helped design the architecture for the electrical system of the next car.
 
 
-My days of sanding shell molds and holding up the array are now behind me, but I still serve as a general advisor to CalSol.
+My days of sanding shell molds and holding up the array are now behind me, but I still keep tabs on the solar car racing community and CalSol.
 
-I currently work at [Keysight Technologies](http://www.keysight.com/) (formerly known as Agilent, formerly known as Hewlett-Packard) as a firmware engineer, working in the High-Frequency Measurements group on signal generator firmware.
+After graduating, I worked at [Keysight Technologies](http://www.keysight.com/) (formerly known as Agilent, formerly known as Hewlett-Packard) in the High-Frequency Measurements group for four years. While there, I primarily worked on the [UXG series](https://www.keysight.com/en/pcx-x205221/x-series-agile-signal-generators-uxg) of signal generators.
+
+
+I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I work on weather station receiver firmware.
