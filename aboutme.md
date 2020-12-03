@@ -5,7 +5,7 @@ nav-name: an
 nav-url: ""
 ---
 
-I’m a firmware/embedded software engineer working in the Bay Area. I currently work at Davis Instruments as a Senior Firmware Engineer, where I serve as a jack of all trades connecting weather stations to the internet.
+I’m a firmware/embedded software engineer working in the Bay Area. I currently work at Davis Instruments as a Senior Firmware Engineer, where I serve as a jack of all trades helping connect weather stations to the internet.
 
 I regularly work on all aspects of firmware, whether it's bringing up a board for the first time, optimizing a device driver, instrumenting the RTOS, or just writing plain old business logic.
 
@@ -32,4 +32,8 @@ My days of sanding shell molds and holding up the array are now behind me, but I
 After graduating, I worked at [Keysight Technologies](https://www.keysight.com/) (formerly known as Agilent, formerly known as Hewlett-Packard) in the High-Frequency Measurements group for four years. While there, I primarily worked on the [UXG series](https://www.keysight.com/en/pcx-x205221/x-series-agile-signal-generators-uxg) of signal generators.
 
 
-I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I work on weather station receiver firmware.
+I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I work on weather related products. In my time at Davis, I've:
+
+* Written a partial network stack for the [WeatherLink Live](https://www.davisinstruments.com/weatherlinklive/), including an mDNS responder and DHCP client.
+* Put together [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/) tools to test device BLE functionality in advance of the mobile application team developing the official mobile app.
+* Handled all of the firmware for [AirLink](https://www.davisinstruments.com/airlink/) - a WiFi particulate matter sensor - from concept prototype to initial board bring-up to production programming tools.
