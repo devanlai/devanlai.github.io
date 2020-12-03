@@ -5,21 +5,20 @@ nav-name: an
 nav-url: ""
 ---
 
-I’m a firmware/embedded software engineer working in the Bay Area. I currently work at Davis Instruments as a Senior Firmware Engineer, where I serve as a jack of all trades helping connect weather stations to the internet.
+## Who Am I?
 
-I regularly work on all aspects of firmware, whether it's bringing up a board for the first time, optimizing a device driver, instrumenting the RTOS, or just writing plain old business logic.
+I am a firmware engineer based in the San Francisco Bay Area currently working at [Davis Instruments](https://www.davisinstruments.com/).
+I have seven years of professional experience contributing to embedded products at all stages of the product life cycle, from sketching out diagrams on the whiteboard to flashing boards on the factory floor.
 
-I thrive on debugging problems at all layers of the stack. Whether it's a logic analyzer capture or server logs, I avail myself of all troubleshooting information, regardless of the domain. Some days I step through the firmware with the debugger in the morning and step through the companion Android application in the afternoon.
+I'm not a full-stack developer, but you might say I'm a full-stack debugger - I'm not afraid to diagnose problems at any layer, from the hardware all the way up to the backend server. I may have never written an Android application, but that's never stopped me from sending patches to the mobile application team.
 
-As an engineer at a small company, I solicit design input across team boundaries and strive to make decisions that are best for the product and company as a whole, not just for my own piece of the puzzle. 
+I am something of a developer tools geek - I am just as comfortable scripting APIs as I am plumbing through Makefiles or automating the debugger. I try to understand the tools at my disposal to the fullest and when appropriate, I'm not above [building my own tools]({{site.baseurl}}/projects/dap42).
 
 ## My history
 
 I grew up hacking on Python scripts through high school, mostly writing simple CGI scripts (back when shared hosting was the standard).
 
-In college, I studied [EECS](https://eecs.berkeley.edu) at UC Berkeley, where I picked up a bit of EE and a lot of CS. After about a semester, I joined [CalSol, the solar vehicle team](https://calsol.berkeley.edu/) for fun because someone promised me cookies.
-
-I ended up spending most of my time at CalSol, where I:
+In college, I studied [EECS](https://eecs.berkeley.edu) at UC Berkeley, where I picked up a bit of EE and a lot of CS. After about a semester, I joined [CalSol, the solar vehicle team](https://calsol.berkeley.edu/) because someone promised there would be cookies. I ended up spending most of my time at CalSol, where I:
 
 * Built a telemetry system, a couple of times.
 * Soldered a few boards, plus a few square meters of solar array.
@@ -32,8 +31,9 @@ My days of sanding shell molds and holding up the array are now behind me, but I
 After graduating, I worked at [Keysight Technologies](https://www.keysight.com/) (formerly known as Agilent, formerly known as Hewlett-Packard) in the High-Frequency Measurements group for four years. While there, I primarily worked on the [UXG series](https://www.keysight.com/en/pcx-x205221/x-series-agile-signal-generators-uxg) of signal generators.
 
 
-I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I work on weather related products. In my time at Davis, I've:
+I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I develop weather-related products. In my time at Davis, I've:
 
 * Written a partial network stack for the [WeatherLink Live](https://www.davisinstruments.com/weatherlinklive/), including an mDNS responder and DHCP client.
 * Put together [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/) tools to test device BLE functionality in advance of the mobile application team developing the official mobile app.
 * Handled all of the firmware for [AirLink](https://www.davisinstruments.com/airlink/) - a WiFi particulate matter sensor - from concept prototype to initial board bring-up to production programming tools.
+* Built streaming packet-capture functionality into firmware to allow real-time analysis with Wireshark
