@@ -12,7 +12,7 @@
 
 {% if page.js %}
   {% for js in page.js %}
-	<script src="{{ js | prepend: site.baseurl | replace: '//', '/' }}"></script>
+	<script src="{{ js | replace: '//', '/' }}"></script>
   {% endfor %}
 {% endif %}
 

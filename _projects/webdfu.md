@@ -23,7 +23,7 @@ The simplest application for WebUSB and firmware updates is to implement [dfu-ut
 
 I've put together an [online demo](https://devanlai.github.io/webdfu/dfu-util/) that offers similar functionality to dfu-util. It supports basic DFU 1.1 functionality like switching to the bootloader over USB, downloading new firmware, and reading out the device firmware. It also has preliminary support for [STMicro's DfuSe 1.1a](http://dfu-util.sourceforge.net/dfuse.html) extensions, which I've tested successfully with the on-chip USB bootloader on STM32F042xx chips.
 
-![webdfu example screenshot](/img/WebDFU.png)
+![webdfu example screenshot]({{site.baseurl}}/img/WebDFU.png)
 *A screenshot of the webdfu demo in action*
 
 In the future, this could be used to build a rich firmware updater that guides the user through the process of putting their device into firmware-upgrade mode and selecting the correct firmware image.
@@ -73,5 +73,4 @@ Luckily, while the mbed IDE isn't open-source, we can still leverage their onlin
 * DAPLink with DFU and WebUSB: [daplink](https://github.com/devanlai/DAPLink)
 
 ## See also:
-* Controlling unmodified STLink debuggers with WebUSB: [webstlink](/projects/webstlink)
-* Check out the [dapjs](https://github.com/ARMmbed/dapjs-web-demo) project for similar ideas by someone else.
+* Controlling unmodified STLink debuggers with WebUSB: [webstlink]({{site.baseurl}}/projects/webstlink)

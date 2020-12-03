@@ -12,7 +12,7 @@ _dap42_ is an open-source debug probe for ARM Cortex-M devices.
 
 It sits between your computer and your microcontroller and translates the commands it receives over USB into bit-banged [Serial Wire Debug (SWD)](http://www.arm.com/products/system-ip/debug-trace/coresight-soc-components/serial-wire-debug.php) signals that the microcontroller's on-chip debug peripheral understands.
 
-![DAP42 data flow diagram](/img/DAP42-diagram.svg)
+![DAP42 data flow diagram]({{site.baseurl}}/img/DAP42-diagram.svg)
 
 It uses ARM's standard [CMSIS-DAP](http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php) debug protocol, so it works with many tools and IDEs, such as Keil uVision, LPCXpresso, and [openocd](http://openocd.org/).
 
@@ -39,7 +39,7 @@ As an added bonus, the _dap42_ firmware adds some extra features that you won't 
 _dap42_ is designed to be usable standalone, but it can also be embedded into a development board as an on-board debug probe.
 Once you've put the debugger onto the board, hooking a few more IO lines to USB is essentially free.
 
-![BRAINv3.33 development board](/img/BRAINv3.33-with-CAN.jpg)
+![BRAINv3.33 development board]({{site.baseurl}}/img/BRAINv3.33-with-CAN.jpg)
 *A DAP42 debugger embedded in this development board does triple-duty as a debugger, USB-serial adapter, and CAN bus monitor*
 
 The firmware compiles with standard gcc-arm - you don't need an expensive proprietary toolchain to build the firmware yourself.
