@@ -8,7 +8,7 @@ nav-url: ""
 ## Who Am I?
 
 I am a firmware engineer based in the San Francisco Bay Area currently working at [Davis Instruments](https://www.davisinstruments.com/).
-I have seven years of professional experience contributing to embedded products at all stages of the product life cycle, from sketching out diagrams on the whiteboard to flashing boards on the factory floor.
+I have nine years of professional experience contributing to embedded products at all stages of the product life cycle, from sketching out diagrams on the whiteboard to flashing boards on the factory floor.
 
 I'm not a full-stack developer, but you might say I'm a full-stack debugger - I'm not afraid to diagnose problems at any layer, from the hardware all the way up to the backend server. I may have never written an Android application, but that's never stopped me from sending patches to the mobile application team.
 
@@ -31,9 +31,10 @@ My days of sanding shell molds and holding up the array are now behind me, but I
 After graduating, I worked at [Keysight Technologies](https://www.keysight.com/) (formerly known as Agilent, formerly known as Hewlett-Packard) in the High-Frequency Measurements group for four years. While there, I primarily worked on the [UXG series](https://www.keysight.com/en/pcx-x205221/x-series-agile-signal-generators-uxg) of signal generators.
 
 
-I currently work at [Davis Instruments](https://www.davisinstruments.com/), where I develop weather-related products. In my time at Davis, I've:
+I currently work at [Davis Instruments](https://www.davisinstruments.com/) (now part of [AEM](https://aem.eco/)), where I develop weather-related products. In my time at Davis, I've:
 
 * Written a partial network stack for the [WeatherLink Live](https://www.davisinstruments.com/weatherlinklive/), including an mDNS responder and DHCP client.
 * Put together [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/) tools to test device BLE functionality in advance of the mobile application team developing the official mobile app.
 * Handled all of the firmware for [AirLink](https://www.davisinstruments.com/airlink/) - a WiFi particulate matter sensor - from concept prototype to initial board bring-up to production programming tools.
 * Built streaming packet-capture functionality into firmware to allow real-time analysis with Wireshark
+* Written the weather radio management and data processing code for the [WeatherLink Console](https://www.davisinstruments.com/pages/weatherlink-console) on a custom AOSP platform.
